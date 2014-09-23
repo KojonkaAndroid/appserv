@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+ $('form').submit( function(e) {
+   
+    var postData = $(this).serializeArray();
+    var formURL = $(this).attr("action");
+    $.ajax(
+    {
+        url : formURL,
+        type: "POST",
+        data : postData,
+        success:function(data)
+        {
+          alert(data);
+           
+        }
+    });
+    e.preventDefault(); //STOP default action
+    e.unbind(); //unbind. to stop multiple form submit.
+        
+ });
+});
+
+function jsonpCallback(data){
+       
+    }
+</script>
+</head>
+<body>
+<form id="form" name="input" action="http://localhost/adduser.php" method="POST" >
+username: <input name="username" type="text" id="username"><br>
+password: <input name="password" type="text" id="password"><br>
+score: <input name="score" type="text" id="score"><br>
+<input type="submit" value="Submit">
+</form> 
+</body>
+</html>

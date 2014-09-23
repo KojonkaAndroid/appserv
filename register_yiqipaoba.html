@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+ $('form').submit( function(e) {
+   
+    var postData = $(this).serializeArray();
+    var formURL = $(this).attr("action");
+    $.ajax(
+    {
+        url : formURL,
+        type: "POST",
+        data : postData,
+        success:function(data)
+        {
+          alert(data);
+           
+        }
+    });
+    e.preventDefault(); //STOP default action
+    e.unbind(); //unbind. to stop multiple form submit.
+        
+ });
+});
+
+</script>
+</head>
+<body>
+<form id="form" name="input" action="http://xrun.xtep.com/wbservice/UpdateUserInfo.aspx?action=register" method="POST" >
+username: <input name="Username" type="text" id="Username"><br>
+password: <input name="Password" type="text" id="Password"><br>
+gender: <input name="Gender" type="text" id="Gender"><br>
+Height: <input name="Height" type="text" id="Height"><br>
+Weight: <input name="Weight" type="text" id="Weight"><br>
+<input type="submit" value="Submit">
+</form> 
+</body>
+</html>
